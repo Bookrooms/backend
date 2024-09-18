@@ -1,5 +1,3 @@
-FROM bookrooms_frontend AS front
-
 FROM python:latest
 WORKDIR /app
 
@@ -9,7 +7,6 @@ RUN pip3 install -r requirements.txt
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY ./src ./src
-COPY --from=front /app/dist ./dist
+COPY . .
 
-ENTRYPOINT [ "./docker-entrypoint.sh" ]
+ENTRYPOINT [ "./entrypoint.sh" ]
